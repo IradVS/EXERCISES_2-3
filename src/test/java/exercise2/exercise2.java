@@ -1,7 +1,5 @@
 package exercise2;
 
-import static org.testng.Assert.assertEquals;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -25,7 +23,6 @@ public class exercise2 {
 	public void setUp() {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 		driver.manage().window().maximize();
 	}
@@ -219,6 +216,7 @@ public class exercise2 {
 		WebElement btnJoin=driver.findElement(By.cssSelector("#carousel-example-generic > div > div > div > div > div > a"));
 		Assert.assertTrue(btnJoin.isDisplayed());
 	}
+	
 	@AfterMethod
 	public void turnOff() throws InterruptedException {
 		System.out.println("EXIT");
