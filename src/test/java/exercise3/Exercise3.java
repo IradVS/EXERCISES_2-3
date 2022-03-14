@@ -32,15 +32,16 @@ public class Exercise3 {
 	public void setUp() {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
 		driver = new ChromeDriver();
-		driver.get("https://www.phptravels.net/flights");
+		driver.get("https://www.phptravels.net");
 		driver.manage().window().maximize();
 	}
 
 	@Test
 	public void flightTest() {
-
 		// Validate page loads correctly
+		Assert.assertTrue(driver.getTitle().equals("PHPTRAVELS - PHPTRAVELS"));
 		// Click on “Flights” icon
+		driver.findElement(By.xpath("//*[@id='fadein']/header/div[2]/div/div/div/div/div[2]/nav/ul/li[3]/a")).click();
 		// Select “Round trip” radio button
 		WebElement radioBtn = driver.findElement(By.xpath("//div/input[@id='round-trip']"));
 		radioBtn.click();
