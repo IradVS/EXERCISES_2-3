@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-03-13T18:29:09 CST" name="Default suite" finished-at="2022-03-13T18:29:34 CST" duration-ms="25110">
+  <suite started-at="2022-03-13T18:48:56 CST" name="Default suite" finished-at="2022-03-13T18:49:21 CST" duration-ms="25511">
     <groups>
     </groups>
-    <test started-at="2022-03-13T18:29:09 CST" name="Default test" finished-at="2022-03-13T18:29:34 CST" duration-ms="25110">
+    <test started-at="2022-03-13T18:48:56 CST" name="Default test" finished-at="2022-03-13T18:49:21 CST" duration-ms="25511">
       <class name="exercise3.Exercise3">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:exercise3.Exercise3@614ca7df]" started-at="2022-03-13T18:29:09 CST" name="setUp" finished-at="2022-03-13T18:29:22 CST" duration-ms="13336" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:exercise3.Exercise3@614ca7df]" started-at="2022-03-13T18:48:56 CST" name="setUp" finished-at="2022-03-13T18:49:11 CST" duration-ms="15351" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="flightTest()[pri:0, instance:exercise3.Exercise3@614ca7df]" started-at="2022-03-13T18:29:22 CST" name="flightTest" finished-at="2022-03-13T18:29:29 CST" duration-ms="6569" status="PASS">
+        <test-method signature="flightTest()[pri:0, instance:exercise3.Exercise3@614ca7df]" started-at="2022-03-13T18:49:11 CST" name="flightTest" finished-at="2022-03-13T18:49:16 CST" duration-ms="5002" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- flightTest -->
-        <test-method is-config="true" signature="turnOff()[pri:0, instance:exercise3.Exercise3@614ca7df]" started-at="2022-03-13T18:29:29 CST" name="turnOff" finished-at="2022-03-13T18:29:34 CST" duration-ms="5118" status="PASS">
+        <test-method is-config="true" signature="turnOff()[pri:0, instance:exercise3.Exercise3@614ca7df]" started-at="2022-03-13T18:49:16 CST" name="turnOff" finished-at="2022-03-13T18:49:21 CST" duration-ms="5116" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- turnOff -->
