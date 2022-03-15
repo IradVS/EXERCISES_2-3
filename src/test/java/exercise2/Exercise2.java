@@ -102,6 +102,7 @@ public class Exercise2 {
 	public void changeTab() throws InterruptedException {
 		WebElement buttonTab = driver.findElement(By.xpath("//*[@id='opentab']"));
 		buttonTab.click();
+
 		String winHandleBefore = driver.getWindowHandle();
 		// Perform the click operation that opens new window
 		// Switch to new window opened
@@ -200,23 +201,25 @@ public class Exercise2 {
 
 	@Test
 	public void mouseHoverTest() throws InterruptedException {
-		WebElement btnMouse=driver.findElement(By.id("mousehover"));
+		WebElement btnMouse = driver.findElement(By.id("mousehover"));
 		Actions actionProvider = new Actions(driver);
-	    actionProvider.moveToElement(btnMouse).build().perform();
-		WebElement top=driver.findElement(By.xpath("/html/body/div[4]/div/fieldset/div/div/a[1]"));
-		WebElement reload=driver.findElement(By.xpath("/html/body/div[4]/div/fieldset/div/div/a[2]"));
+		actionProvider.moveToElement(btnMouse).build().perform();
+		WebElement top = driver.findElement(By.xpath("/html/body/div[4]/div/fieldset/div/div/a[1]"));
+		WebElement reload = driver.findElement(By.xpath("/html/body/div[4]/div/fieldset/div/div/a[2]"));
 		Thread.sleep(3000);
-	    Assert.assertTrue(top.isDisplayed());
-	    Assert.assertTrue(reload.isDisplayed());
+		Assert.assertTrue(top.isDisplayed());
+		Assert.assertTrue(reload.isDisplayed());
 	}
+
 	@Test
 	public void iframeTest() {
-		WebElement frame=driver.findElement(By.xpath("//iframe[@id='courses-iframe']"));
+		WebElement frame = driver.findElement(By.xpath("//iframe[@id='courses-iframe']"));
 		driver.switchTo().frame(frame);
-		WebElement btnJoin=driver.findElement(By.cssSelector("#carousel-example-generic > div > div > div > div > div > a"));
+		WebElement btnJoin = driver
+				.findElement(By.cssSelector("#carousel-example-generic > div > div > div > div > div > a"));
 		Assert.assertTrue(btnJoin.isDisplayed());
 	}
-	
+
 	@AfterMethod
 	public void turnOff() throws InterruptedException {
 		System.out.println("EXIT");

@@ -1,13 +1,9 @@
 package exercise3;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -20,10 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import io.netty.handler.codec.DateFormatter;
 
 public class Exercise3 {
 	WebDriver driver;
