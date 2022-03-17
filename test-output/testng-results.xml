@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-03-17T02:17:18 CST" name="Default suite" finished-at="2022-03-17T02:17:57 CST" duration-ms="38556">
+  <suite started-at="2022-03-17T02:43:37 CST" name="Default suite" finished-at="2022-03-17T02:44:00 CST" duration-ms="23141">
     <groups>
     </groups>
-    <test started-at="2022-03-17T02:17:18 CST" name="Default test" finished-at="2022-03-17T02:17:57 CST" duration-ms="38556">
+    <test started-at="2022-03-17T02:43:37 CST" name="Default test" finished-at="2022-03-17T02:44:00 CST" duration-ms="23141">
       <class name="exercise4.Exercise4">
-        <test-method is-config="true" signature="startUp()[pri:0, instance:exercise4.Exercise4@7e7be63f]" started-at="2022-03-17T02:17:18 CST" name="startUp" finished-at="2022-03-17T02:17:26 CST" duration-ms="7433" status="PASS">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:exercise4.Exercise4@6cd28fa7]" started-at="2022-03-17T02:43:37 CST" name="startUp" finished-at="2022-03-17T02:43:45 CST" duration-ms="7711" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startUp -->
-        <test-method signature="tc_REQ005_001()[pri:0, instance:exercise4.Exercise4@7e7be63f]" started-at="2022-03-17T02:17:26 CST" name="tc_REQ005_001" finished-at="2022-03-17T02:17:52 CST" duration-ms="25912" status="PASS">
+        <test-method signature="tc_REQ007_001()[pri:0, instance:exercise4.Exercise4@6cd28fa7]" started-at="2022-03-17T02:43:45 CST" name="tc_REQ007_001" finished-at="2022-03-17T02:43:55 CST" duration-ms="10218" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tc_REQ005_001 -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:exercise4.Exercise4@7e7be63f]" started-at="2022-03-17T02:17:52 CST" name="tearDown" finished-at="2022-03-17T02:17:57 CST" duration-ms="5178" status="PASS">
+        </test-method> <!-- tc_REQ007_001 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:exercise4.Exercise4@6cd28fa7]" started-at="2022-03-17T02:43:55 CST" name="tearDown" finished-at="2022-03-17T02:44:00 CST" duration-ms="5173" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
