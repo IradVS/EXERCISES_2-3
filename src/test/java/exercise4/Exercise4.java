@@ -1,7 +1,5 @@
 package exercise4;
 
-import java.awt.Desktop.Action;
-import java.awt.event.ActionEvent;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -87,6 +85,49 @@ public class Exercise4 {
 		Assert.assertEquals(submitMessage.getText(), "Thanks for contacting us! We will be in touch with you shortly");
 	}
 
+	@Test
+	public void tc_REQ007_002() {
+		driver.get("https://practice.automationbro.com/contact/");
+		Actions action = new Actions(driver);
+		//Enter data
+		WebElement nameField = driver.findElement(By.xpath("//*[@id='evf-277-field_ys0GeZISRs-1']"));
+		WebElement emailField = driver.findElement(By.xpath("//*[@id='evf-277-field_LbH5NxasXM-2']"));
+		WebElement phoneField = driver.findElement(By.xpath("//*[@id='evf-277-field_66FR384cge-3']"));
+		WebElement messageField = driver.findElement(By.xpath("//*[@id='evf-277-field_yhGx3FOwr2-4']"));
+		WebElement submitBtn = driver.findElement(By.xpath("//*[@id='evf-submit-277']"));
+		nameField.sendKeys("Jose");
+		emailField.sendKeys("jose@gmail.com");
+		phoneField.sendKeys("1234567891");
+		messageField.sendKeys("Hola mundo");
+		submitBtn.click();
+		String successMessage=driver.findElement(By.xpath("//*[@id='primary']/div/div/div/section[3]/div/div/div/div/div/section[2]/div/div/div[2]/div/div/div/div/div/div/div")).getText();
+		Assert.assertEquals(successMessage, "Thanks for contacting us! We will be in touch with you shortly");
+	}
+	
+	@Test
+	public void tc_REQ007_003() throws InterruptedException {
+		driver.get("https://practice.automationbro.com/contact/");
+		Actions action = new Actions(driver);
+		//Enter data
+		WebElement nameField = driver.findElement(By.xpath("//*[@id='evf-277-field_ys0GeZISRs-1']"));
+		WebElement emailField = driver.findElement(By.xpath("//*[@id='evf-277-field_LbH5NxasXM-2']"));
+		WebElement phoneField = driver.findElement(By.xpath("//*[@id='evf-277-field_66FR384cge-3']"));
+		WebElement messageField = driver.findElement(By.xpath("//*[@id='evf-277-field_yhGx3FOwr2-4']"));
+		WebElement submitBtn = driver.findElement(By.xpath("//*[@id='evf-submit-277']"));
+	
+		action.moveToElement(nameField).build().perform();
+		nameField.sendKeys("Jose");
+		emailField.sendKeys("jose@");
+		phoneField.sendKeys("1234567891");
+		Thread.sleep(5000);
+		WebElement errorMessage=driver.findElement(By.xpath("//*[@id='evf-277-field_LbH5NxasXM-2-error']"));
+		messageField.sendKeys("Hola mundo");
+		Assert.assertEquals(errorMessage.getText(), "Please enter a valid email address.");
+		//click on submit
+		submitBtn.click();
+	}
+	
+	
 	@AfterMethod
 	public void tearDown() throws InterruptedException {
 		System.out.println("EXIT");
