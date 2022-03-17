@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-03-13T18:48:56 CST" name="Default suite" finished-at="2022-03-13T18:49:21 CST" duration-ms="25511">
+  <suite started-at="2022-03-17T02:17:18 CST" name="Default suite" finished-at="2022-03-17T02:17:57 CST" duration-ms="38556">
     <groups>
     </groups>
-    <test started-at="2022-03-13T18:48:56 CST" name="Default test" finished-at="2022-03-13T18:49:21 CST" duration-ms="25511">
-      <class name="exercise3.Exercise3">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:exercise3.Exercise3@614ca7df]" started-at="2022-03-13T18:48:56 CST" name="setUp" finished-at="2022-03-13T18:49:11 CST" duration-ms="15351" status="PASS">
+    <test started-at="2022-03-17T02:17:18 CST" name="Default test" finished-at="2022-03-17T02:17:57 CST" duration-ms="38556">
+      <class name="exercise4.Exercise4">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:exercise4.Exercise4@7e7be63f]" started-at="2022-03-17T02:17:18 CST" name="startUp" finished-at="2022-03-17T02:17:26 CST" duration-ms="7433" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="flightTest()[pri:0, instance:exercise3.Exercise3@614ca7df]" started-at="2022-03-13T18:49:11 CST" name="flightTest" finished-at="2022-03-13T18:49:16 CST" duration-ms="5002" status="PASS">
+        </test-method> <!-- startUp -->
+        <test-method signature="tc_REQ005_001()[pri:0, instance:exercise4.Exercise4@7e7be63f]" started-at="2022-03-17T02:17:26 CST" name="tc_REQ005_001" finished-at="2022-03-17T02:17:52 CST" duration-ms="25912" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- flightTest -->
-        <test-method is-config="true" signature="turnOff()[pri:0, instance:exercise3.Exercise3@614ca7df]" started-at="2022-03-13T18:49:16 CST" name="turnOff" finished-at="2022-03-13T18:49:21 CST" duration-ms="5116" status="PASS">
+        </test-method> <!-- tc_REQ005_001 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:exercise4.Exercise4@7e7be63f]" started-at="2022-03-17T02:17:52 CST" name="tearDown" finished-at="2022-03-17T02:17:57 CST" duration-ms="5178" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- turnOff -->
-      </class> <!-- exercise3.Exercise3 -->
+        </test-method> <!-- tearDown -->
+      </class> <!-- exercise4.Exercise4 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
