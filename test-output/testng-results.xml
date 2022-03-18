@@ -2,20 +2,20 @@
 <testng-results ignored="11" total="12" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-03-18T13:20:53 CST" name="Default suite" finished-at="2022-03-18T13:21:28 CST" duration-ms="34639">
+  <suite started-at="2022-03-18T14:56:13 CST" name="Default suite" finished-at="2022-03-18T14:56:34 CST" duration-ms="20986">
     <groups>
     </groups>
-    <test started-at="2022-03-18T13:20:53 CST" name="Default test" finished-at="2022-03-18T13:21:28 CST" duration-ms="34639">
+    <test started-at="2022-03-18T14:56:13 CST" name="Default test" finished-at="2022-03-18T14:56:34 CST" duration-ms="20986">
       <class name="exercise2.Exercise2">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:exercise2.Exercise2@74751b3]" started-at="2022-03-18T13:20:53 CST" name="setUp" finished-at="2022-03-18T13:21:23 CST" duration-ms="29163" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:exercise2.Exercise2@74751b3]" started-at="2022-03-18T14:56:13 CST" name="setUp" finished-at="2022-03-18T14:56:29 CST" duration-ms="15742" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="tabletest()[pri:0, instance:exercise2.Exercise2@74751b3]" started-at="2022-03-18T13:21:23 CST" name="tabletest" finished-at="2022-03-18T13:21:23 CST" duration-ms="316" status="PASS">
+        <test-method signature="radioButtonTest()[pri:0, instance:exercise2.Exercise2@74751b3]" started-at="2022-03-18T14:56:29 CST" name="radioButtonTest" finished-at="2022-03-18T14:56:29 CST" duration-ms="82" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tabletest -->
-        <test-method is-config="true" signature="turnOff()[pri:0, instance:exercise2.Exercise2@74751b3]" started-at="2022-03-18T13:21:23 CST" name="turnOff" finished-at="2022-03-18T13:21:28 CST" duration-ms="5117" status="PASS">
+        </test-method> <!-- radioButtonTest -->
+        <test-method is-config="true" signature="turnOff()[pri:0, instance:exercise2.Exercise2@74751b3]" started-at="2022-03-18T14:56:29 CST" name="turnOff" finished-at="2022-03-18T14:56:34 CST" duration-ms="5119" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- turnOff -->

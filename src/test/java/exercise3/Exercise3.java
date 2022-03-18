@@ -33,29 +33,36 @@ public class Exercise3 {
 	public void flightTest() {
 		// Validate page loads correctly
 		Assert.assertTrue(driver.getTitle().equals("PHPTRAVELS - PHPTRAVELS"));
+		
 		// Click on “Flights” icon
 		driver.findElement(By.xpath("//*[@id='fadein']/header/div[2]/div/div/div/div/div[2]/nav/ul/li[3]/a")).click();
+		
 		// Select “Round trip” radio button
 		WebElement radioBtn = driver.findElement(By.xpath("//div/input[@id='round-trip']"));
 		radioBtn.click();
+		
 		// Enter “Monterrey” on “Departure city”
 		WebElement departureCity = driver.findElement(By.xpath("//div/input[@id='autocomplete']"));
 		departureCity.sendKeys("Monterrey");
 		departureCity.sendKeys(Keys.ARROW_DOWN);
 		departureCity.sendKeys(Keys.ENTER);
+		
 		// Enter “Cancun” on “Arrival city”
 		WebElement arrivalCity = driver.findElement(By.xpath("//div/input[@id='autocomplete2']"));
 		arrivalCity.sendKeys("Cancun");
 		arrivalCity.sendKeys(Keys.ARROW_DOWN);
 		arrivalCity.sendKeys(Keys.ENTER);
+		
 		// Enter tomorrow date on “depart date” field
 		WebElement departDate=driver.findElement(By.xpath("//div/input[@id='departure']"));
 		departDate.clear();
 		departDate.sendKeys(getDate());
+		
 		// Enter 10 days after today date on “Return date”
 		WebElement returnDate=driver.findElement(By.xpath("//div/input[@id='return']"));
 		returnDate.clear();
 		returnDate.sendKeys(getDate(10));
+		
 		// Select 3 adults and 1 child on “Passengers” field
 		WebElement passagersDropdown=driver.findElement(By.xpath("//*[@id='onereturn']/div[3]/div/div/div/a"));
 		passagersDropdown.click();
@@ -64,13 +71,16 @@ public class Exercise3 {
 		adultPlusBtn.click();
 		WebElement childPlusBtn=driver.findElement(By.xpath("//*[@id='onereturn']/div[3]/div/div/div/div/div[2]/div/div/div[2]/i"));
 		childPlusBtn.click();
+		
 		// . Select “First” on dropdown
 		WebElement dropDown=driver.findElement(By.xpath("//*[@id='flight_type']"));
 		Select dropdownMulti = new Select(dropDown);
 		dropdownMulti.selectByValue("first");
+		
 		// Click “Search” button
 		WebElement searchBtn=driver.findElement(By.xpath("//*[@id='flights-search']"));
 		searchBtn.click();
+		
 		// Add an explicit wait to validate information is loaded correctly and add checkpoint needed (i.e. it can be “Modify Search” header)
 		WebElement flightHeader=driver.findElement(By.xpath("//*[@id='fadein']/section[1]"));
 		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
