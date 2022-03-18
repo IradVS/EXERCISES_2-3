@@ -26,16 +26,37 @@ public class Exercise4 {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 	}
-	
-	/*the user navigates in the shop pages looking the products 9 by 9
-	 * */
+
+	@Test
+	public void tc_REQ001_001() {
+		driver.get("https://practice.automationbro.com/shop/");
+		String searchTerm="converse";
+		WebElement searchInput = driver.findElement(By.xpath("//*[@id='woocommerce-product-search-field-0']"));
+		searchInput.sendKeys(searchTerm);
+		WebElement searchButton = driver.findElement(By.xpath("//*[@id='woocommerce_product_search-1']/form/button"));
+		searchButton.click();
+		int products = driver.findElements(By.xpath("//*[@id='primary']/ul//li")).size();
+		String searchResult;
+		for (int i = 1; i < products; i++) {
+			searchResult = driver
+					.findElement(By.xpath("//*[@id='primary']/ul//li[" + i + "]/a/h2")).getText();
+			System.out.println("Result "+searchResult);
+			Assert.assertTrue(searchResult.toLowerCase().contains(searchTerm.toLowerCase()));
+			//Thread.sleep(2000);
+		}
+
+	}
+
+	/*
+	 * the user navigates in the shop pages looking the products 9 by 9
+	 */
 	@Test
 	public void tc_REQ003_001() {
-		//enter to: https://practice.automationbro.com/shop/
+		// enter to: https://practice.automationbro.com/shop/
 		driver.get("https://practice.automationbro.com/shop/");
-		//check how many products are displayed
+		// check how many products are displayed
 		int products = driver.findElements(By.xpath("//*[@id='primary']/ul//li")).size();
-		Assert.assertTrue(products<=9);
+		Assert.assertTrue(products <= 9);
 	}
 
 	/*
@@ -293,8 +314,9 @@ public class Exercise4 {
 	}
 
 	/*
-	 * Validate that products are added to the cart after click on add to cart button
-	 * */
+	 * Validate that products are added to the cart after click on add to cart
+	 * button
+	 */
 	@Test
 	public void tc_REQ008_001() throws InterruptedException {
 		// enter to: https://practice.automationbro.com/shop/
