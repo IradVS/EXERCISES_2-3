@@ -2,19 +2,21 @@ package exercise4;
 
 import java.time.Duration;
 
+import javax.xml.xpath.XPath;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.SendKeysAction;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import io.netty.handler.codec.AsciiHeadersEncoder.NewlineType;
 
 public class Exercise4 {
 	WebDriver driver;
@@ -28,6 +30,10 @@ public class Exercise4 {
 		driver.manage().window().maximize();
 	}
 
+	/*
+	 * check behavior when a registered user views a product and after looks for
+	 * recently viewed products
+	 */
 	@Test
 	public void tc_REQ005_001() throws InterruptedException {
 		driver.get("https://practice.automationbro.com/my-account/");
@@ -64,10 +70,11 @@ public class Exercise4 {
 		Assert.assertEquals(productSelected, recentProduct.getText());
 	}
 
+	/* check behavior when all fields are correctly entered */
 	@Test
 	public void tc_REQ007_001() {
 		driver.get("https://practice.automationbro.com/contact/");
-		//Enter data
+		// Enter data
 		WebElement nameField = driver.findElement(By.xpath("//*[@id='evf-277-field_ys0GeZISRs-1']"));
 		WebElement emailField = driver.findElement(By.xpath("//*[@id='evf-277-field_LbH5NxasXM-2']"));
 		WebElement phoneField = driver.findElement(By.xpath("//*[@id='evf-277-field_66FR384cge-3']"));
@@ -77,64 +84,186 @@ public class Exercise4 {
 		emailField.sendKeys("jose@gmail.com");
 		phoneField.sendKeys("1234567891");
 		messageField.sendKeys("Hola mundo");
-		//click on submit
+		// click on submit
 		submitBtn.click();
-		//verify message
-		WebElement submitMessage=driver.findElement(By.xpath("//*[@id='primary']/div/div/div/section[3]/div/div/div/div/div/section[2]/div/div/div[2]/div/div/div/div/div/div/div"));
+		// verify message
+		WebElement submitMessage = driver.findElement(By.xpath(
+				"//*[@id='primary']/div/div/div/section[3]/div/div/div/div/div/section[2]/div/div/div[2]/div/div/div/div/div/div/div"));
 		System.out.println(submitMessage.getText());
 		Assert.assertEquals(submitMessage.getText(), "Thanks for contacting us! We will be in touch with you shortly");
 	}
 
+	/* check behavior when name is empty */
 	@Test
 	public void tc_REQ007_002() {
 		driver.get("https://practice.automationbro.com/contact/");
 		Actions action = new Actions(driver);
-		//Enter data
+		// Enter data
 		WebElement nameField = driver.findElement(By.xpath("//*[@id='evf-277-field_ys0GeZISRs-1']"));
 		WebElement emailField = driver.findElement(By.xpath("//*[@id='evf-277-field_LbH5NxasXM-2']"));
 		WebElement phoneField = driver.findElement(By.xpath("//*[@id='evf-277-field_66FR384cge-3']"));
 		WebElement messageField = driver.findElement(By.xpath("//*[@id='evf-277-field_yhGx3FOwr2-4']"));
 		WebElement submitBtn = driver.findElement(By.xpath("//*[@id='evf-submit-277']"));
-		nameField.sendKeys("Jose");
+
 		emailField.sendKeys("jose@gmail.com");
 		phoneField.sendKeys("1234567891");
 		messageField.sendKeys("Hola mundo");
 		submitBtn.click();
-		String successMessage=driver.findElement(By.xpath("//*[@id='primary']/div/div/div/section[3]/div/div/div/div/div/section[2]/div/div/div[2]/div/div/div/div/div/div/div")).getText();
-		Assert.assertEquals(successMessage, "Thanks for contacting us! We will be in touch with you shortly");
+
+		WebElement fieldRequired = driver.findElement(By.xpath(
+				"//*[@id='primary']/div/div/div/section[3]/div/div/div/div/div/section[2]/div/div/div[2]/div/div/div/div/div/div/div"));
+		Assert.assertTrue(fieldRequired.isDisplayed());
 	}
-	
+
+	/* validate when user removes a product from the cart */
+	@Test
+	public void tc_REQ010_001() throws InterruptedException {
+		driver.get("https://practice.automationbro.com/shop/");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		int products = driver.findElements(By.xpath("//*[@id='primary']/ul//li")).size();
+		int numberOfProducts = (int) (Math.random() * 5 + 1);
+		int getProduct;
+		WebElement addBtn;
+		for (int i = 0; i < numberOfProducts; i++) {
+			getProduct = (int) (Math.random() * products + 1);
+			addBtn = driver
+					.findElement(By.xpath("//*[@id='primary']/ul//li[" + getProduct + "]//a[text()='Add to cart']"));
+			addBtn.click();
+			// wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id='primary']/ul//li["+getProduct+"]//a[text()='View
+			// cart']"))));
+			Thread.sleep(2000);
+		}
+		WebElement cartBtn = driver.findElement(By.xpath("//*[@id='primary-menu']/li[9]/a/i"));
+		wait.until(ExpectedConditions.visibilityOf(cartBtn));
+		cartBtn.click();
+		int columns = driver.findElements(By.xpath("//*[@id='post-7']/div/div[2]/form/table/tbody//tr")).size();
+		System.out.println(columns);
+		String nameOfProduct;
+		WebElement deletedProduct;
+		for (int i = columns - 1; i > 0; i--) {
+			nameOfProduct = driver
+					.findElement(By.xpath("//*[@id='post-7']/div/div[2]/form/table/tbody/tr[" + i + "]/td[3]/a"))
+					.getText();
+			driver.findElement(By.xpath("//*[@id='post-7']/div/div[2]/form/table/tbody/tr[" + i + "]/td/a")).click();
+			Thread.sleep(3000);
+			Assert.assertTrue(driver.findElement(By.xpath("//*[@id='post-7']/div/div[2]/div[1]/div")).getText()
+					.contains(nameOfProduct));
+			System.out.println(driver.findElement(By.xpath("//*[@id='post-7']/div/div[2]/div[1]/div")).getText());
+		}
+	}
+
+	/* check behavior when email is in wrong format */
 	@Test
 	public void tc_REQ007_003() throws InterruptedException {
 		driver.get("https://practice.automationbro.com/contact/");
 		Actions action = new Actions(driver);
-		//Enter data
+		// Enter data
 		WebElement nameField = driver.findElement(By.xpath("//*[@id='evf-277-field_ys0GeZISRs-1']"));
 		WebElement emailField = driver.findElement(By.xpath("//*[@id='evf-277-field_LbH5NxasXM-2']"));
 		WebElement phoneField = driver.findElement(By.xpath("//*[@id='evf-277-field_66FR384cge-3']"));
 		WebElement messageField = driver.findElement(By.xpath("//*[@id='evf-277-field_yhGx3FOwr2-4']"));
 		WebElement submitBtn = driver.findElement(By.xpath("//*[@id='evf-submit-277']"));
-	
+
 		action.moveToElement(nameField).build().perform();
 		nameField.sendKeys("Jose");
 		emailField.sendKeys("jose@");
 		phoneField.sendKeys("1234567891");
 		Thread.sleep(5000);
-		WebElement errorMessage=driver.findElement(By.xpath("//*[@id='evf-277-field_LbH5NxasXM-2-error']"));
+		WebElement errorMessage = driver.findElement(By.xpath("//*[@id='evf-277-field_LbH5NxasXM-2-error']"));
 		messageField.sendKeys("Hola mundo");
 		Assert.assertEquals(errorMessage.getText(), "Please enter a valid email address.");
-		//click on submit
+		// click on submit
 		submitBtn.click();
 	}
-	
-	
+
+	/*
+	 * Validate a registered user is able to checkout by filling the fields with the
+	 * proper values
+	 */
+	@Test
+	public void tc_REQ011_001() throws InterruptedException {
+		// enter to: https://practice.automationbro.com/my-account/
+		driver.get("https://practice.automationbro.com/my-account/");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// login
+		WebElement userInput = driver.findElement(By.xpath("//*[@id='username']"));
+		WebElement passwordInput = driver.findElement(By.xpath("//*[@id='password']"));
+		WebElement loginBtn = driver.findElement(By.xpath("//*[@id='customer_login']/div[1]/form/p[3]/button"));
+		userInput.sendKeys(user);
+		passwordInput.sendKeys(password);
+		loginBtn.click();
+		// click on shop menu
+		WebElement shopMenu = driver.findElement(By.xpath("//*[@id='menu-item-567']/a"));
+		shopMenu.click();
+		// choose a random number of products to click on add to cart button
+		int products = driver.findElements(By.xpath("//*[@id='primary']/ul//li")).size();
+		int numberOfProducts = (int) (Math.random() * 5 + 1);
+		int getProduct;
+		WebElement addBtn;
+		for (int i = 0; i < numberOfProducts; i++) {
+			getProduct = (int) (Math.random() * products + 1);
+			addBtn = driver
+					.findElement(By.xpath("//*[@id='primary']/ul//li[" + getProduct + "]//a[text()='Add to cart']"));
+			addBtn.click();
+			// wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id='primary']/ul//li["+getProduct+"]//a[text()='View
+			// cart']"))));
+			Thread.sleep(2000);
+		}
+		// click on any "view cart" link
+		WebElement cartBtn = driver.findElement(By.xpath("//*[@id='primary-menu']/li[9]/a/i"));
+		wait.until(ExpectedConditions.visibilityOf(cartBtn));
+		cartBtn.click();
+		// click on "proceed to checkout"
+		driver.findElement(By.xpath("//*[@id='post-7']/div/div[2]/div[2]/div/div/a")).click();
+		// fill first name field
+		driver.findElement(By.xpath("//*[@id='billing_first_name']")).sendKeys("Phillip");
+		// fill last name field
+		driver.findElement(By.xpath("//*[@id='billing_last_name']")).sendKeys("Sherman");
+		// fill country/region field
+		driver.findElement(By.xpath("//*[@id='select2-billing_country-container']")).click();
+		WebElement dropdownInput = driver.findElement(By.xpath("/html/body/span[2]/span/span[1]/input"));
+		dropdownInput.sendKeys("aus");
+		dropdownInput.sendKeys(Keys.ENTER);
+
+		// fill street address field
+		driver.findElement(By.xpath("//*[@id='billing_address_1']")).sendKeys("Calle Wallaby");
+
+		// fill suburb field
+		driver.findElement(By.xpath("//*[@id='billing_city']")).sendKeys("Hornsby Heights NSW");
+
+		// fill state field
+		driver.findElement(By.xpath("//*[@id='select2-billing_state-container']")).click();
+		WebElement stateDropInput = driver.findElement(By.xpath("/html/body/span[2]/span/span[1]/input"));
+		stateDropInput.sendKeys("new");
+		stateDropInput.sendKeys(Keys.ENTER);
+
+		// fill postal code field
+		driver.findElement(By.xpath("//*[@id='billing_postcode']")).sendKeys("2077");
+
+		// fill phone field
+		driver.findElement(By.xpath("//*[@id='billing_phone']")).sendKeys("1234567891");
+
+		// fill email address field
+		// driver.findElement(By.xpath(""));
+
+		// click on place order
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//*[@id='place_order']")).click();
+
+		// assert order message
+		Thread.sleep(5000);
+		WebElement messageElement = driver.findElement(
+				By.xpath("//*[@id='post-8']/div/div/div/div/section/div/div/div/div/div/div/div/div/div[2]/div/p"));
+		//wait.until(ExpectedConditions.visibilityOf(messageElement));
+		String messageString = messageElement.getText();
+		Assert.assertEquals(messageString, "Thank you. Your order has been received.");
+	}
+
 	@AfterMethod
 	public void tearDown() throws InterruptedException {
 		System.out.println("EXIT");
 		Thread.sleep(5000);
 		driver.quit();
 	}
-	// WebElement
-	// addBtn=driver.findElement(By.xpath("//*[@id='primary']/ul//li["+getProduct+"]//a[text()='Add
-	// to cart']"));
+	//
 }

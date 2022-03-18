@@ -6,8 +6,8 @@
       <class name="exercise4.Exercise4">
         <methods>
           <include name="startUp"/>
-          <include name="tc_REQ007_002"/>
           <include name="tearDown"/>
+          <include name="tc_REQ011_001"/>
         </methods>
       </class> <!-- exercise4.Exercise4 -->
     </classes>
